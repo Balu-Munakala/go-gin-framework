@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Balu-Munakala/go-gin-framework/controller"
+	"github.com/Balu-Munakala/go-gin-framework/middleware"
 	"github.com/Balu-Munakala/go-gin-framework/service"
 	"github.com/gin-gonic/gin"
 )
@@ -12,7 +13,9 @@ var (
 )
 
 func main() {
-	server := gin.Default()
+	server := gin.New()
+
+	server.Use(gin.Recovery(), middleware.Logger())
 
 	server.GET("/videos", func(ctx *gin.Context) {
 		ctx.JSON(200, videoController.FindAll())
