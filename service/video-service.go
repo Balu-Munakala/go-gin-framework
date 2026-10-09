@@ -12,14 +12,14 @@ type videoService struct {
 }
 
 func New() VideoService {
-	return &videoService{}
+	return &videoService{videos: make([]entity.Video, 0)}
 }
 
-func (v *videoService) Save(video entity.Video) entity.Video {
-	v.videos = append(v.videos, video)
+func (s *videoService) Save(video entity.Video) entity.Video {
+	s.videos = append(s.videos, video)
 	return video
 }
 
-func (v *videoService) FindAll() []entity.Video {
-	return v.videos
+func (s *videoService) FindAll() []entity.Video {
+	return s.videos
 }
